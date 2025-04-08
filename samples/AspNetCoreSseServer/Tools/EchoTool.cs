@@ -1,14 +1,15 @@
-﻿using ModelContextProtocol.Server;
+﻿using AspNetCoreSseServer.Tools;
+using ModelContextProtocol.Server;
 using System.ComponentModel;
 
 namespace TestServerWithHosting.Tools;
 
 [McpServerToolType]
-public sealed class EchoTool
+public sealed class EchoTool(MyData myData)
 {
     [McpServerTool, Description("Echoes the input back to the client.")]
-    public static string Echo(string message)
+    public string Echo(string message)
     {
-        return "hello " + message;
+        return myData.Prefix + message;
     }
 }
